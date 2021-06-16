@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+int partioning(int arr[],int pivot,int low, int high);
+
+int kthsmallest(int arr[],int low,int high,int k){
+    int pivot = high;
+    int pi = partioning(arr,pivot,low,high);
+    if(k>pi){
+        kthsmallest(arr,pi+1,high,k);
+    }
+    else if(k<pi){
+        kthsmallest(arr,low,pi-1,k);
+    }
+    else{
+        return arr[pi];
+    }
+}
+
+int partioning(int arr[],int pivot,int low, int high){
+    int temp = arr[pivot];
+    int i = low,j= low;
+    while(i<=high){
+        if(arr[i]<=temp){
+	//arr[i] >= temp ==>For kth largest element
+            swap(arr[i],arr[j]);
+            i++;
+            j++;
+        }
+        else{
+            i++;
+        }
+    }
+    return j-1;
+}
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int k;
+    cin>>k;
+    cout<<kthsmallest(arr,0,n-1,k-1);
+
+    return 0;
+}

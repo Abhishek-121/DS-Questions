@@ -1,0 +1,30 @@
+void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        int index =0;
+        for(int i=n-1;i>0;i--){
+            if(nums[i]>nums[i-1]){
+                index = i;
+                break;
+            }
+        }
+        if(index){
+            int leastMax = index;
+            for(int i=n-1;i>index;i--){
+                if(nums[i]>nums[index-1]){
+                    leastMax = i;
+                    break;
+                }
+            }
+            swap(nums[leastMax],nums[index-1]);
+            reverse(nums.begin()+index,nums.end());
+        }
+        else{
+            reverse(nums.begin(),nums.end());
+        }
+        
+    }
+
+
+// Inbuilt Function
+
+next_permutaion(v.begin(),v.end());

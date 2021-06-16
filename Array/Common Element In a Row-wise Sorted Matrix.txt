@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define m 4
+#define n 5
+
+void commonElements(int arr[m][n]){
+    
+    int min_row = 0;
+    int flag =0;
+    //Store the index of row having minimu element in last columns
+    int col[m];
+    for(int i=0;i<m;i++)
+        col[i] = n-1;
+        
+    while(col[min_row]>0){
+        for(int i=0;i<m;i++){
+            if(arr[i][col[i]]<arr[min_row][col[min_row]])
+                min_row = i;
+        }
+        
+        //Count the elements in each row that is equal to current last elem in col
+        int count =0;
+        //Traverse the array and update the current last col
+        for(int i=0;i<m;i++){
+            if(arr[i][col[i]]>arr[min_row][col[min_row]]){
+                if(col[i]==0)
+                    return;
+                col[i] -= 1;
+            }
+            else
+                count++;
+        }
+        
+        if(count==m){
+            cout<<arr[min_row][col[min_row]]<<endl;
+            // flag = 1;    
+            }
+    }
+    // if(flag==0){
+    //     cout<<"No Common Elements Found";
+    // }
+}
+
+int main()
+{
+    // int m,n;
+    // cin>>m>>n;
+    int arr[m][n];
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            cin>>arr[i][j];
+        }
+    }
+    
+    commonElements(arr);
+
+    return 0;
+}
+
+#2 Using onordered map
+
+void printCommonElements(int mat[M][N]) 
+{ 
+    unordered_map<int, int> mp; 
+  
+    // initalize 1st row elements with value 1 
+    for (int j = 0; j < N; j++) 
+        mp[mat[0][j]] = 1; 
+  
+    // traverse the matrix 
+    for (int i = 1; i < M; i++) 
+    { 
+        for (int j = 0; j < N; j++) 
+        { 
+            // If element is present in the map and 
+            // is not duplicated in current row. 
+            if (mp[mat[i][j]] == i) 
+            { 
+               // we increment count of the element 
+               // in map by 1 
+                mp[mat[i][j]] = i + 1; 
+  
+                // If this is last row 
+                if (i==M-1) 
+                  cout << mat[i][j] << " "; 
+            } 
+        } 
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

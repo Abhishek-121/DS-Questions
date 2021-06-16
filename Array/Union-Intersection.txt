@@ -1,0 +1,19 @@
+void unionOfTwoArray(int arr[],int brr[],int n,int m){
+    set<int>s;
+    for(int i=0;i<n;i++)
+	   s.insert(arr[i]);
+	for(int i=0;i<m;i++)
+	   s.insert(brr[i]);
+    cout<<s.size()<<endl;
+}
+
+void intersectionOfTwoArray(int arr[],int brr[],int n,int m){
+    set<int>s;
+    for(int i=0;i<n;i++)
+	   s.insert(arr[i]);
+    for(int i=0;i<m;i++){
+        if(s.find(brr[i])!=s.end()){
+            cout<<brr[i]<<" ";
+        }
+    }
+}

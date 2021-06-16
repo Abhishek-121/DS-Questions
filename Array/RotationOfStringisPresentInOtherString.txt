@@ -1,0 +1,76 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool rotation(string s1, string s2){
+    if(s1.length()!=s2.length())
+        return false;
+    string temp = s1+s1;  
+    int i=0,j=0;
+    while(i<temp.length()-s2.length()){
+        if(temp[i]!=s2[j]){
+          i++;
+        }
+        else{
+            while(j<s2.length()){
+                if(temp[i]!=s2[j]){
+                    return false;
+                }
+                i++;
+                j++;
+            }
+            if(j==s2.length())
+                return true;
+        }
+    }
+    return false;
+}
+
+
+
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    if(rotation(s1,s2))
+        cout <<"True"<<endl;
+    else
+        cout<<"False"<<endl;
+
+    return 0;
+}
+
+
+#Method 2 - Using find function
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    int found = s1.find(s2);
+    if(found!=string::npos){
+    cout<<"First occurence at "<<found<<endl;
+    }
+    int sec_occurence = s1.find(s2,found+1);
+    if(sec_occurence!=string::npos){
+    cout<<"Second occurence at "<<sec_occurence<<endl;
+    }
+    if(s1.find(s2)!=string::npos){
+        cout<<"Find";
+    }
+    else{
+    cout<<"Not Found";
+    }
+    return 0;
+}
+
+
+
+
+
+
+

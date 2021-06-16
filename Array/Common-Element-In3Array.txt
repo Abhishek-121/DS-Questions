@@ -1,0 +1,59 @@
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            map<int,int>m;
+            vector<int> res;
+            m[A[0]]++;
+            for(int i=1;i<n1;i++){
+                if(A[i]!=A[i-1])
+                    m[A[i]]++;
+            }
+            m[B[0]]++;
+            for(int i=1;i<n2;i++){
+                if(B[i]!=B[i-1])
+                    m[B[i]]++;
+            }
+            m[C[0]]++;
+            if(m[C[0]]==3)
+                res.push_back(C[0]);
+            for(int i=1;i<n3;i++){
+                if(C[i]!=C[i-1]){
+                    m[C[i]]++;
+                if(m[C[i]]==3)
+                res.push_back(C[i]);
+                }
+            }
+            
+            return res;
+            
+        }
+
+
+
+#Method 2
+
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            int i=0,j=0,k=0;
+            set<int>RepeatElement;
+            while(i<n1 && j<n2 && k<n3){
+                if(A[i]==B[j] && B[j]==C[k]){
+                    RepeatElement.insert(A[i]);
+                    i++;
+                    j++;
+                    k++;
+                }
+                else if(A[i]<B[j] && A[i]<C[k])
+                    i++;
+                else if(B[j]<C[k] && B[j]<A[i])
+                    j++;
+                else
+                    k++;
+            }
+            vector<int> res;
+            for(int x : RepeatElement)
+                res.push_back(x);
+               
+             
+            return res;
+            
+        }
