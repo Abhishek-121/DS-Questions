@@ -1,0 +1,28 @@
+
+Binary String: count no of possible substring that start and ends with same char like here '1'
+
+Input: 00100101
+Output: 3
+Explaination: “1001”, “100101” and “101”
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	    int n;
+	    cin>>n;
+	    char *s = new char[n];
+	    cin>>s;
+	    int count =0;
+	    for(int i=0;i<n;i++){
+	        if(s[i]=='1')
+	            count++;
+	    }
+	    cout<<(count*(count-1))/2<<endl;
+	    t--;
+	}
+	return 0;
+}

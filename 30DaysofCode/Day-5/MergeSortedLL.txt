@@ -1,0 +1,63 @@
+
+==>1. Using Merge Sort
+
+Node* sortedMerge(Node* head_A, Node* head_B)  
+{  
+    if(head_A==NULL)
+        return head_B;
+    if(head_B==NULL)
+        return head_A;   
+    Node* newNode=NULL;
+    Node* head = NULL;
+    
+    if(head_A->data < head_B->data){
+        newNode = head = head_A;
+        head_A = head_A->next; 
+    }
+    else{
+        newNode = head = head_B;
+        head_B = head_B->next; 
+    }
+    
+    while(head_A!=NULL && head_B!=NULL){
+        if(head_A->data<head_B->data){
+            newNode->next = head_A;
+            head_A = head_A->next; 
+        }
+        else{
+            newNode->next = head_B;
+            head_B = head_B->next; 
+        }
+        newNode = newNode->next;
+    }
+    
+    if(head_A==NULL){
+        newNode->next = head_B;
+    }
+      
+    else if(head_B==NULL){
+        newNode->next = head_A;
+    }   
+    return head;
+}  
+
+
+2. Using Recursion
+
+Node* sortedMerge(Node* head_A, Node* head_B)  
+{  
+    if(head_A==NULL)
+        return head_B;
+    if(head_B==NULL)
+        return head_A;   
+    Node* res = NULL;
+    if(head_A->data<head_B->data){
+        res = head_A;
+        res->next = sortedMerge(head_A->next,head_B);
+    }
+    else{
+         res = head_B;
+        res->next = sortedMerge(head_A,head_B->next);
+    }
+    return res;
+}

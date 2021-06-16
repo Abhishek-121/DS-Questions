@@ -1,0 +1,92 @@
+# Method 1
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	    int m,n;
+	    cin>>m>>n;
+	    int arr[m];
+	    for(int i=0;i<m;i++)
+	        cin>>arr[i];
+	    int brr[n];
+	    for(int i=0;i<n;i++)
+	        cin>>brr[i];
+	    sort(arr,arr+m);
+	    sort(brr,brr+n);
+	    int p =0,q =0,k=0;
+	    int temp[m+n];
+	    while(p<m and q<n){
+	        if(arr[p]<brr[q])
+	            temp[k++] = arr[p++];
+	        else
+	            temp[k++] = brr[q++];
+	    }
+	    
+	   while(p<m){
+	       temp[k++] = arr[p++];
+	    }
+	   while(q<n){
+	       temp[k++] = brr[q++];
+	       }
+	    
+	    for(int i=0;i<m+n;i++)
+	        cout<<temp[i]<<" ";
+	   cout<<endl;
+	    t--;
+	}
+	return 0;
+}
+
+
+
+# Method 2
+
+
+void mergeArrays(int a[], int b[], int n, int m)  
+{ 
+    // Declaring a map. 
+    // using map as a inbuilt tool 
+    // to store elements in sorted order. 
+    map<int, bool> mp; 
+      
+    // Inserting values to a map. 
+    for(int i = 0; i < n; i++) 
+    mp[a[i]] = true; 
+      
+    for(int i = 0;i < m;i++) 
+    mp[b[i]] = true; 
+      
+    // Printing keys of the map. 
+    for(auto i: mp) 
+    cout<< i.first <<" "; 
+} 
+
+
+# Method 3 : Without using extra space
+
+void merge(int ar1[], int ar2[], int m, int n) 
+{ 
+    // Iterate through all elements of ar2[] starting from 
+    // the last element 
+    for (int i=n-1; i>=0; i--) 
+    { 
+        /* Find the smallest element greater than ar2[i]. Move all 
+           elements one position ahead till the smallest greater 
+           element is not found */
+        int j, last = ar1[m-1]; 
+        for (j=m-2; j >= 0 && ar1[j] > ar2[i]; j--) 
+            ar1[j+1] = ar1[j]; 
+  
+        // If there was a greater element 
+        if (j != m-2 || last > ar2[i]) 
+        { 
+            ar1[j+1] = ar2[i]; 
+            ar2[i] = last; 
+        } 
+    } 
+} 
+

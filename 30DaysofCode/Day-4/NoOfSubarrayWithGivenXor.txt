@@ -1,0 +1,18 @@
+int Solution::solve(vector<int> &A, int B) {
+    int ans =0;
+    int* Xor = new int[A.size()];
+    unordered_map<int,int>m;
+    Xor[0] = A[0];
+    for(int i=0;i<A.size();i++)
+        Xor[i] = Xor[i-1]^A[i];
+    
+    for(int i=0;i<A.size();i++){
+        int temp = B^Xor[i];
+        ans += m[temp];
+        
+        if(Xor[i]==B)
+            ans++;
+        m[Xor[i]]++;
+    }
+    return ans;
+}

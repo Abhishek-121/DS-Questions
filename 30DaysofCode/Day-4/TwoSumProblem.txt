@@ -1,0 +1,35 @@
+  vector<int> twoSum(vector<int>& nums, int target) {
+      int n = nums.size();
+      int l = 0;
+      int r = n-1;
+      vector<int>v;
+      while(l<r){
+          if(nums[l]+nums[r]>target)
+              r--;
+          else if(nums[l]+nums[r]<target)
+              l++;
+          else{
+              v.push_back(l);
+              v.push_back(r);
+              l++;
+              r--;
+          }
+      }
+        return v;
+    }
+
+vector<int> twoSum(vector<int>& nums, int target) {
+      int n = nums.size();
+      
+      vector<int>v;
+      for(int i =0;i<n-1;i++){
+          for(int j = i+1;j<n;j++){
+              if(nums[i]+nums[j]==target){
+                  v.push_back(i);
+                  v.push_back(j);
+                  break;
+              }
+          }
+      }
+        return v;
+    }

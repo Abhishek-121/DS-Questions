@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	    int n;
+	    cin>>n;
+	    pair<int,int>p[n];
+	    for(auto &it:p)
+	        cin>>it.first>>it.second;
+	    sort(p,p+n);
+	    vector<pair<int,int>>res;
+	    res.push_back(p[0]);
+	    for(int i=1;i<n;i++){
+	        if(res.back().second >= p[i].first){
+	            res.back().second = max(p[i].second,res.back().second);
+	        }
+	        else
+	            res.push_back(p[i]);
+	    }
+	    for(auto i :res){
+	        cout<<i.first<<" "<<i.second<<" ";
+	    }
+	    cout<<endl;
+	    t--;
+	}
+	return 0;
+}

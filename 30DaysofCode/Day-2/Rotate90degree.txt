@@ -1,0 +1,19 @@
+void rotateby90(int n, int a[][N]){
+   
+   //Transpose
+   for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+            swap(a[i][j],a[j][i]);
+        }
+    }
+    
+    //Reversed the columns
+    for(int i=0;i<n;i++){
+	int k =n-1;
+        for(int j=0;j<k;j++){
+            swap(a[j][i],a[k][i]);
+            k--;
+	}
+    }
+      
+}

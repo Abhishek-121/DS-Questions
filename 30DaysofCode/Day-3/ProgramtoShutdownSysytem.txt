@@ -1,0 +1,31 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+  
+int main() 
+{ 
+  system("c:\\windows\\system32\\shutdown /i"); 
+  return 0; 
+} 
+
+-->The argument to the system function is the path to OS and /i is one of the entity from the vast options available to us.To view the options, we run cmd and type:
+			C:\Users\User>shutdown
+
+-->To perform different operations, we just replace the last “/path” in system    () argument.The common operations are:
+
+1. Shutdown:
+	system("c:\\windows\\system32\\shutdown /s");
+
+2. Restart:
+	system("c:\\windows\\system32\\shutdown /r");
+
+3. Logoff:
+	system("c:\\windows\\system32\\shutdown /l");	
+
+
+
+
+
+
+
+
+

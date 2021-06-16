@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void stockBuySell(int arr[],int n){
+    if(n==1)
+        return;
+    int temp[n];
+    int j=0;
+    for(int i=n-1;i>=0;i--){
+	    temp[j]=arr[i];
+        j++;
+    }
+    if(is_sorted(temp,temp+n)==true){
+        cout<<"No Profit";
+    }
+
+    int i=0;
+    while(i<n-1){
+        while((i<n-1)&&arr[i]>=arr[i+1])
+            i++;
+        if(i==n-1)
+            break;
+        
+        int buy = i++;
+        while((i<n) && arr[i]>=arr[i-1])
+            i++;
+        int sell = i-1;
+        
+        cout<<"("<<buy<<" "<<sell<<") ";
+        
+    }
+    
+   
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	    int n;
+	    cin>>n;
+	    int arr[n];
+	    for(int i=0;i<n;i++)
+	        cin>>arr[i];
+	   stockBuySell(arr,n);
+	    cout<<endl;
+	    t--;
+	}
+	return 0;
+}

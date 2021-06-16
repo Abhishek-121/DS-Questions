@@ -1,0 +1,36 @@
+int lengthOfLongestSubstring(string s) {
+      int n = s.length();
+      int left =0,len=0;
+      unordered_map<char,int>m;
+      for(int right=0;right<n;right++){
+          if(m.find(s[right])!=m.end()){
+              left = max(left,m[s[right]]+1);
+          }
+          m[s[right]] = right;
+          len = max(len,right-left+1);
+      }
+        return len;
+    }
+
+#2 Method - Better Solution
+
+int lengthOfLongestSubstring(string s) {
+      int n = s.length();
+      int longestlength = 0;
+      vector<char>v;
+      for(int i=0;i<n;i++){
+          auto it = find(v.begin(),v.end(),s[i]);
+          if(it != v.end()){
+              if(longestlength<v.size())
+                  longestlength = v.size();
+              it++;
+              v.erase(v.begin(),it);
+          }
+         v.push_back(s[i]);
+      }
+         if(longestlength<v.size())
+              longestlength = v.size();
+        return longestlength;
+    }
+
+

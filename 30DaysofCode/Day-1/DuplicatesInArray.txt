@@ -1,0 +1,13 @@
+vector<int> duplicates(int a[], int n) {
+  int temp[n]={0};
+  vector<int>v,v1;
+  sort(a,a+n);
+  for(int i=0;i<n;i++)
+        temp[a[i]]++;
+  for(int i=0;i<n;i++){
+      if(temp[i]>1)
+        v.push_back(i);
+  }
+  v1.push_back(-1);
+  return v.size()==0? v1 :v;
+}

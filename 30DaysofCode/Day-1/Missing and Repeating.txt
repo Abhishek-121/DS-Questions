@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	    int n;
+	    cin>>n;
+	    int arr[n];
+	    int brr[n];
+	    for(int i=0;i<n;i++)
+	        cin>>arr[i];
+	    for(int i=0;i<n;i++){
+	        if(brr[arr[i]]==0)
+	            brr[arr[i]]=1;
+	        else
+	            cout<<"Duplicate value is "<<arr[i]<<" ";
+	    }
+	    for(int i=1;i<n;i++){
+	        if(brr[i]==0)
+	            cout<<"missing no is "<<i;
+	    }
+	    cout<<endl;
+	    t--;
+	}
+	return 0;
+}
+
+
+# Correct one
+
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0){
+	long long int n,curr;
+	long long int sum_n =0;
+    long long int sum_n2 =0;
+        cin>>n;
+        for(int i =0; i<n; i++)
+        {
+            cin>>curr;
+            sum_n += curr;
+            sum_n2 += (curr)*(curr);
+        }
+    
+        long long int x = (n*(n+1))/2 - sum_n;
+        long long int y = ((n*(n+1)*(2*n+1))/6 - sum_n2)/x;
+        
+        cout<<(y-x)/2<<" "<<(x+y)/2<<endl;
+	    t--;
+	}
+	return 0;
+}

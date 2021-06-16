@@ -1,0 +1,20 @@
+#include<iostream.h>
+using namespace std;
+
+Class A{
+ public:
+	static int a;
+	A(){
+	 cout<<a++<<endl;
+	}
+
+};
+
+it A::a =1;
+
+int main(){
+ int N = 100;
+ A obj[N];
+
+ return 0;
+}

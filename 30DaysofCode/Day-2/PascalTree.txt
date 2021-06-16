@@ -1,0 +1,35 @@
+#Method 1 : O(n^2) with extra space
+
+void printPascal(int n) 
+{ 
+    int arr[n][n];  
+
+    for (int line = 0; line < n; line++) 
+    { 
+        for (int i = 0; i <= line; i++) 
+        { 
+       
+       	 if (line == i || i == 0) 
+            arr[line][i] = 1; 
+        
+        else
+            arr[line][i] = arr[line - 1][i - 1] +  arr[line - 1][i]; 
+        cout << arr[line][i] << " "; 
+        } 
+        cout <<endl; 
+    } 
+} 
+  
+#Method 2: Optimized
+
+void printPascal(int n){
+    for(int line =1;line<=n;line++){
+        int c =1;
+        
+        for(int i=1;i<=line;i++){
+            cout<<c<<" ";
+            c = c * (line-i)/i;
+        }
+        cout<<endl;
+    }
+}
