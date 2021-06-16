@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> gss(string s){
+    if(s ==""){
+        vector<string>bres;
+        bres.push_back("");
+        return bres;
+    }
+    
+    char ch = s[0];
+    string ros = s.substr(1);
+    vector<string> rres = gss(ros);
+    vector<string>res;
+    for(string mres:rres)
+        res.push_back(mres);
+    
+    for(string mres:rres)
+        res.push_back(ch+mres);
+    
+    return res;
+}
+
+int main(){
+    string s;
+    cin>>s;
+    vector<string>ans = gss(s);
+    int n = ans.size();
+    cout<<'[';
+    for(int i=0;i<n-1;i++){
+        cout<<ans[i]<<", ";
+    }
+    cout<<ans[n-1]<<']';
+    return 0;
+}
+
