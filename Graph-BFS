@@ -1,0 +1,88 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Graph
+{
+  int V;
+    list < int >*adjList;
+public:
+    Graph (int v)
+  {
+    V = v;
+    adjList = new list < int >[V];
+  }
+
+  void addPath (int u, int v, bool double_sided = 0)
+  {
+    adjList[u].push_back (v);
+    if (!double_sided)
+      {
+	adjList[v].push_back (u);
+      }
+  }
+
+  void printList ()
+  {
+    for (int i = 0; i < V; i++)
+      {
+	cout << i << "-->";
+      for (auto neighbour:adjList[i])
+	  {
+	    cout << neighbour << ",";
+	  }
+	cout << endl;
+      }
+  }
+
+  void bfs (int src)
+  {
+    queue < int >q;
+    bool *visited = new bool[V] { 0 };
+    int *distance = new int[V + 1] { 0 };
+    int *parent = new int[V + 1];
+
+    for (int i = 0; i < V; i++)
+      {
+	parent[i] = -1;
+      }
+
+    q.push (src);
+    visited[src] = true;
+    while (!q.empty ())
+      {
+	int node = q.front ();
+	cout << node << " ,";
+	q.pop ();
+      for (auto neighbour:adjList[node])
+	  {
+	    if (!visited[neighbour])
+	      {
+		q.push (neighbour);
+		visited[neighbour] = true;
+		distance[neighbour] = distance[node] + 1;
+		parent[neighbour] = node;
+	      }
+	  }
+      }
+    cout << endl;
+    //distance of every node from source
+    for (int i = 0; i < V; i++)
+      {
+	cout << i << "having the distance" << distance[i] << endl;
+      }
+  }
+};
+
+
+int main ()
+{
+  Graph g (4);
+  g.addPath (0, 1);
+  g.addPath (0, 2);
+  g.addPath (1, 3);
+  g.addPath (2, 3);
+  g.printList ();
+  g.bfs (0);
+  return 0;
+}
